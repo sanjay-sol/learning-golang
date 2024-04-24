@@ -30,12 +30,6 @@ func main() {
 
 	fmt.Println(name4, age2)
 
-	// boolean
-
-	var isCool = true
-
-	fmt.Println(isCool)
-
 	// format specifiers
 
 	fmt.Printf("age %d \n", age2)
@@ -52,5 +46,29 @@ func main() {
 	var age4 = 20.5
 
 	fmt.Println(float64(age3) + age4)
+
+	// arrays and slices
+
+	var arr [3]int = [3]int{1, 2, 3}
+	fmt.Println(arr)
+
+	names := [3]string{"John", "Jane", "Doe"}
+	fmt.Println(names)
+
+	// slices
+
+	var slice []int = []int{1, 2, 3}
+	fmt.Println(slice)
+	fmt.Println("lenght", len(slice))
+
+	// append
+	slice = append(slice, 4) // return new slice
+	fmt.Println(slice)
+
+	// slice of slice
+
+	slice2 := slice[1:3] // like in python
+	fmt.Println(slice2)
+
 
 }
