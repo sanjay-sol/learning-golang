@@ -71,4 +71,18 @@ func main() {
 	fmt.Println(slice2)
 
 
+	// maps
+
+	var person map[string]string = map[string]string{
+		"name": "John Doe",
+		"age": "20",
+	}
+
+	fmt.Println(person)
+
+	// add key value
+
+	
+
+
 }
