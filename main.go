@@ -80,9 +80,15 @@ func main() {
 
 	fmt.Println(person)
 
-	// add key value
+	// functions
 
+	var func1 = func() {
+		fmt.Println("Hello from function")
+	}
+
+	func1()
 	
+
 
 
 }
