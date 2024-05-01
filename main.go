@@ -87,7 +87,16 @@ func main() {
 	}
 
 	func1()
-	
+
+
+	// pointer
+
+	var x = 10
+	var y = &x
+
+	fmt.Println(x, y)
+
+
 
 
 
