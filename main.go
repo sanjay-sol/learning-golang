@@ -1,16 +1,30 @@
-package main 
+package main
+
 
 import (
-  "fmt"
+  "os"
+  "log"
+  "readLines"
+  "compareFiles"
 )
 
 func main() {
-  l := &ListNode{val: 1}
-  l.add(2)
-  l.add(3)
-  l.add(4)
-  l.add(5)
-  l.print()
-  
-  
+    if len(os.Args) < 3 {
+        log.Fatalf("Usage: %s <file1> <file2>\n", os.Args[0])
+    }
+
+    file1Path := os.Args[1]
+    file2Path := os.Args[2]
+
+    file1Lines, err := readLines(file1Path)
+    if err != nil {
+        log.Fatalf("Failed to read file %s: %s\n", file1Path, err)
+    }
+
+    file2Lines, err := readLines(file2Path)
+    if err != nil {
+        log.Fatalf("Failed to read file %s: %s\n", file2Path, err)
+    }
+
+    compareFiles(file1Lines, file2Lines)
 }
