@@ -1,5 +1,5 @@
 
-package main
+package file 
 
 import (
     "bufio"
@@ -9,7 +9,7 @@ import (
     . "github.com/sanjay-sol/learning-go"
 )
 
-func readLines(filePath string) ([]string, error) {
+func ReadLines(filePath string) ([]string, error) {
     file, err := os.Open(filePath)
     if err != nil {
         return nil, err

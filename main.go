@@ -6,6 +6,7 @@ import (
   "log"
   "readLines"
   "compareFiles"
+  "github.com/sanjay-sol/learning-go/file"
 )
 
 func main() {
@@ -26,5 +27,4 @@ func main() {
         log.Fatalf("Failed to read file %s: %s\n", file2Path, err)
     }
 
-    compareFiles(file1Lines, file2Lines)
-}
+
