@@ -36,6 +36,7 @@ package main
 
 import (
   "fmt"
+  "time"
 )
 
 type Person struct {
@@ -49,6 +50,15 @@ type rect struct {
 
 }
 
+type Describe interface {
+  Describer() string
+}
+
+func (r rect) Describer() string {
+  
+ return fmt.Sprintf("%v , %v", r.width, r.height)
+}
+
 func (r *rect) area() int {
   return r.width * r.height
 }
@@ -60,6 +70,17 @@ func (r * rect) peri() int {
 func newPerson(name string, age int) *Person {
   p := Person{name: name , age: 433}
   return &p
+}
+
+
+// go channel syscronization
+
+func worker(done chan string)  {
+  fmt.Println("wrking....")
+  time.Sleep(time.Second)
+  fmt.Println("Done")
+
+  done <- "Hello guys"
 }
 
 
@@ -94,9 +115,44 @@ func main() {
   fmt.Println(r1.area())
   fmt.Println(r1.peri())
 
+  r2 := rect{height: 10, width: 5}
+  
+  // var d Describe
 
+  d := r2
+
+  fmt.Println(d.Describer())
+
+  // messages := make(chan int)
+  //
+  // go func() {messages <- 11}()
+  // 
+  // go func() {
+  //
+  // for i :=0;i<1000;i++ {
+  //   
+  //   messages <- i
+  // }
+  //
+  //   close(messages)
+  // }()
+  // 
+  //   for val := range messages {
+  //     fmt.Println(val)
+  //   }
+
+
+  // sync channel 
+
+  syncchan := make(chan string,1)
+
+  go worker(syncchan)
   
-  
+  <- syncchan
+
+  fmt.Println("Done sync....")
+
+
   
 
 }
