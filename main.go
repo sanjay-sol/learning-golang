@@ -75,6 +75,7 @@ func newPerson(name string, age int) *Person {
 
 // go channel syscronization
 
+
 func worker(done chan string)  {
   fmt.Println("wrking....")
   time.Sleep(time.Second)
@@ -83,6 +84,18 @@ func worker(done chan string)  {
   done <- "Hello guys"
 }
 
+// channel directions
+
+
+func ping2(ping chan<- string, msg string ){
+  ping <- msg
+}
+
+
+func pong2(ping <-chan string, pong chan<- string){
+  msg := <- ping
+  pong <- msg
+}
 
 func main() {
   p1 := Person{name: "Sanjay", age: 25}
@@ -148,11 +161,18 @@ func main() {
 
   go worker(syncchan)
   
-  <- syncchan
+  fmt.Println(<- syncchan)
 
   fmt.Println("Done sync....")
 
+  // channel directions
+  ping := make(chan string,1)
+  pong := make(chan string,1)
 
+  ping2(ping,"hello from the channel directions ")
+  pong2(ping, pong)
+
+  fmt.Println(<-pong)
   
 
 }
