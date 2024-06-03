@@ -97,6 +97,9 @@ func pong2(ping <-chan string, pong chan<- string){
   pong <- msg
 }
 
+
+
+
 func main() {
   p1 := Person{name: "Sanjay", age: 25}
   p2 := Person{name: "Sanjay", age: 25}
@@ -173,6 +176,37 @@ func main() {
   pong2(ping, pong)
 
   fmt.Println(<-pong)
+
+  // select 
+
+  chan1 := make(chan string)
+  chan2 := make(chan string)
+  
+  go func() {
+    time.Sleep(3*time.Second)
+    chan1 <- "wait for 3 sec"
+  }()
+
+  go func() {
+    time.Sleep(time.Second)
+    chan2 <- "wait for 1 sec"
+  }()
+
+
+
+
+
+  for i := 0;i<2;i++ {
+    select {
+    case msg := <- chan1:
+      fmt.Println("message from channel 1 ", msg)
+      
+    case msg2 := <- chan2:
+      fmt.Println("message from channel 2 ", msg2)
+    }
+  }
+
+  
   
 
 }
