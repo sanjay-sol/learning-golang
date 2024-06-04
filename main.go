@@ -37,6 +37,8 @@ package main
 import (
   "fmt"
   "time"
+  "github.com/learning-go/client/file"
+  
 )
 
 type Person struct {
@@ -199,7 +201,7 @@ func main() {
   for i := 0;i<2;i++ {
     select {
     case msg := <- chan1:
-      fmt.Println("message from channel 1 ", msg)
+      fmt.Println("message from channel 1 %v", msg)
       
     case msg2 := <- chan2:
       fmt.Println("message from channel 2 ", msg2)
@@ -207,6 +209,20 @@ func main() {
   }
 
   
+  // testing range 
+  
+  mapex := make(map[string]string)
+
+  for i:=;i<5;i++ {
+    map[i+""] = 'a'+i+""
+  }
+
+  fmt.Println(mapex)
+  
+
+  // Packages testing
+
+  file.Hello()
   
 
 }

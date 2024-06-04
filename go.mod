@@ -1,3 +1,3 @@
-module github.com/sanjay-sol/learning-go
+module github.com/sanjay-sol/learning-golang
 
 go 1.20
