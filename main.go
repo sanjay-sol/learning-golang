@@ -99,7 +99,22 @@ func pong2(ping <-chan string, pong chan<- string){
 }
 
 
+// Done channel 
 
+
+
+func donechan(done <-chan string) {
+  
+  for {
+    select {
+    case <-done:
+      return
+    default:
+      fmt.Println("Doing work until done ................")
+  }
+  }
+
+}
 
 func main() {
   p1 := Person{name: "Sanjay", age: 25}
@@ -241,6 +256,18 @@ func main() {
   for val := range chan11 {
     fmt.Println(val)
   }
+
+
+boolchan := make(chan string)
+
+
+  go donechan(boolchan)
+
+  time.Sleep(time.Second * 3)
+
+  // boolchan <- "true"
+
+  close(boolchan)
 
 
 
