@@ -37,8 +37,7 @@ package main
 import (
   "fmt"
   "time"
-  "github.com/learning-golang/hello"
-  
+ "github.com/sanjay-sol/learning-golang/hello"  
 )
 
 type Person struct {
@@ -211,19 +210,39 @@ func main() {
   
   // testing range 
   
-  mapex := make(map[string]string)
+  // mapex := make(map[string]string)
+  //
+  // for i:=;i<5;i++ {
+  //   map[i+""] = 'a'+i+""
+  // }
 
-  for i:=;i<5;i++ {
-    map[i+""] = 'a'+i+""
-  }
-
-  fmt.Println(mapex)
+ // fmt.Println(mapex)
   
 
   // Packages testing
 
-  file.Hello()
-  
+  hello.Hello()
+
+
+  // for select 
+
+  chan11 := make(chan string, 5)
+
+  chars := []string{"a", "b","c","d","e"}
+
+  for _, val := range chars {
+    select {
+    case chan11 <- val :
+  }
+  }
+
+  close(chan11)
+
+  for val := range chan11 {
+    fmt.Println(val)
+  }
+
+
 
 }
 
