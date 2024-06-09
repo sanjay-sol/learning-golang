@@ -269,6 +269,17 @@ boolchan := make(chan string)
 
   close(boolchan)
 
+  go func(newchan chan<- string) {
+    for {
+      select {
+      case newchan <- val:
+        fmt.Println(val)
+      default:
+        fmt.Println("Default")
+    }
+    }
+  }()
+
 
 
 }
