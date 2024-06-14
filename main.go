@@ -37,7 +37,7 @@ package main
 import (
   "fmt"
   "time"
- "github.com/sanjay-sol/learning-golang/hello"  
+  // "github.com/sanjay-sol/learning-golang/hello"  
 )
 
 type Person struct {
@@ -117,170 +117,182 @@ func donechan(done <-chan string) {
 }
 
 func main() {
-  p1 := Person{name: "Sanjay", age: 25}
-  p2 := Person{name: "Sanjay", age: 25}
+//   p1 := Person{name: "Sanjay", age: 25}
+//   p2 := Person{name: "Sanjay", age: 25}
+//
+//
+//
+//   if p1 == p2 {
+//     fmt.Println("p1 and p2 are equal")
+//   } else {
+//     fmt.Println("p1 and p2 are not equal")
+//   }
+//
+//   p3 := newPerson("sanjuu",69)
+//
+//   fmt.Println(p3);
+//   fmt.Println(p3.name);
+//   fmt.Println(p3.age);
+//   
+//   
+//
+//   r := rect{height : 10, width :5}
+//
+//   fmt.Println(r.area())
+//   fmt.Println(r.peri())
+//
+//   r1 := &r
+//
+//   r1.height = 11
+//   fmt.Println(r1.area())
+//   fmt.Println(r1.peri())
+//
+//   r2 := rect{height: 10, width: 5}
+//   
+//   // var d Describe
+//
+//   d := r2
+//
+//   fmt.Println(d.Describer())
+//
+//   // messages := make(chan int)
+//   //
+//   // go func() {messages <- 11}()
+//   // 
+//   // go func() {
+//   //
+//   // for i :=0;i<1000;i++ {
+//   //   
+//   //   messages <- i
+//   // }
+//   //
+//   //   close(messages)
+//   // }()
+//   // 
+//   //   for val := range messages {
+//   //     fmt.Println(val)
+//   //   }
+//
+//
+//   // sync channel 
+//
+//   syncchan := make(chan string,1)
+//
+//   go worker(syncchan)
+//   
+//   fmt.Println(<- syncchan)
+//
+//   fmt.Println("Done sync....")
+//
+//   // channel directions
+//   ping := make(chan string,1)
+//   pong := make(chan string,1)
+//
+//   ping2(ping,"hello from the channel directions ")
+//   pong2(ping, pong)
+//
+//   fmt.Println(<-pong)
+//
+//   // select 
+//
+//   chan1 := make(chan string)
+//   chan2 := make(chan string)
+//   
+//   go func() {
+//     time.Sleep(3*time.Second)
+//     chan1 <- "wait for 3 sec"
+//   }()
+//
+//   go func() {
+//     time.Sleep(time.Second)
+//     chan2 <- "wait for 1 sec"
+//   }()
+//
+//
+//
+//
+//
+//   for i := 0;i<2;i++ {
+//     select {
+//     case msg := <- chan1:
+//       fmt.Println("message from channel 1 %v", msg)
+//       
+//     case msg2 := <- chan2:
+//       fmt.Println("message from channel 2 ", msg2)
+//     }
+//   }
+//
+//   
+//   // testing range 
+//   
+//   // mapex := make(map[string]string)
+//   //
+//   // for i:=;i<5;i++ {
+//   //   map[i+""] = 'a'+i+""
+//   // }
+//
+//  // fmt.Println(mapex)
+//   
+//
+//   // Packages testing
+//
+//   hello.Hello()
+//
+//
+//   // for select 
+//
+//   chan11 := make(chan string, 5)
+//
+//   chars := []string{"a", "b","c","d","e"}
+//
+//   for _, val := range chars {
+//     select {
+//     case chan11 <- val :
+//   }
+//   }
+//
+//   close(chan11)
+//
+//   for val := range chan11 {
+//     fmt.Println(val)
+//   }
+//
+//
+// boolchan := make(chan string)
+//
+//
+//   go donechan(boolchan)
+//
+//   time.Sleep(time.Second * 3)
+//
+//   // boolchan <- "true"
+//
+//   close(boolchan)
+//
+  newchann := make(chan string) 
 
 
-
-  if p1 == p2 {
-    fmt.Println("p1 and p2 are equal")
-  } else {
-    fmt.Println("p1 and p2 are not equal")
-  }
-
-  p3 := newPerson("sanjuu",69)
-
-  fmt.Println(p3);
-  fmt.Println(p3.name);
-  fmt.Println(p3.age);
-  
-  
-
-  r := rect{height : 10, width :5}
-
-  fmt.Println(r.area())
-  fmt.Println(r.peri())
-
-  r1 := &r
-
-  r1.height = 11
-  fmt.Println(r1.area())
-  fmt.Println(r1.peri())
-
-  r2 := rect{height: 10, width: 5}
-  
-  // var d Describe
-
-  d := r2
-
-  fmt.Println(d.Describer())
-
-  // messages := make(chan int)
-  //
-  // go func() {messages <- 11}()
-  // 
-  // go func() {
-  //
-  // for i :=0;i<1000;i++ {
-  //   
-  //   messages <- i
-  // }
-  //
-  //   close(messages)
-  // }()
-  // 
-  //   for val := range messages {
-  //     fmt.Println(val)
-  //   }
-
-
-  // sync channel 
-
-  syncchan := make(chan string,1)
-
-  go worker(syncchan)
-  
-  fmt.Println(<- syncchan)
-
-  fmt.Println("Done sync....")
-
-  // channel directions
-  ping := make(chan string,1)
-  pong := make(chan string,1)
-
-  ping2(ping,"hello from the channel directions ")
-  pong2(ping, pong)
-
-  fmt.Println(<-pong)
-
-  // select 
-
-  chan1 := make(chan string)
-  chan2 := make(chan string)
-  
-  go func() {
-    time.Sleep(3*time.Second)
-    chan1 <- "wait for 3 sec"
-  }()
-
-  go func() {
-    time.Sleep(time.Second)
-    chan2 <- "wait for 1 sec"
-  }()
-
-
-
-
-
-  for i := 0;i<2;i++ {
-    select {
-    case msg := <- chan1:
-      fmt.Println("message from channel 1 %v", msg)
-      
-    case msg2 := <- chan2:
-      fmt.Println("message from channel 2 ", msg2)
-    }
-  }
-
-  
-  // testing range 
-  
-  // mapex := make(map[string]string)
-  //
-  // for i:=;i<5;i++ {
-  //   map[i+""] = 'a'+i+""
-  // }
-
- // fmt.Println(mapex)
-  
-
-  // Packages testing
-
-  hello.Hello()
-
-
-  // for select 
-
-  chan11 := make(chan string, 5)
-
-  chars := []string{"a", "b","c","d","e"}
-
-  for _, val := range chars {
-    select {
-    case chan11 <- val :
-  }
-  }
-
-  close(chan11)
-
-  for val := range chan11 {
-    fmt.Println(val)
-  }
-
-
-boolchan := make(chan string)
-
-
-  go donechan(boolchan)
-
-  time.Sleep(time.Second * 3)
-
-  // boolchan <- "true"
-
-  close(boolchan)
-
-  go func(newchan chan<- string) {
+  go func(newchann <-chan string) {
+    
     for {
       select {
-      case newchan <- val:
+      case val,ok := <- newchann: 
+        if !ok {
+          fmt.Println("Something is wrong ...closing channel ")
+          return
+        }
         fmt.Println(val)
       default:
-        fmt.Println("Default")
+        fmt.Println("no work is doing by the channel.")
+        time.Sleep(1* time.Second)
     }
     }
-  }()
+  }(newchann)
 
-
+  for i:=0;i<5;i++ {
+    newchann <- fmt.Sprintf("Message in newchann %d", i)
+    time.Sleep(time.Second * 1)
+  }
 
 }
 
