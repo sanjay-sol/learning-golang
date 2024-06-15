@@ -276,11 +276,11 @@ func main() {
     
     for {
       select {
-      case val,ok := <- newchann: 
-        if !ok {
-          fmt.Println("Something is wrong ...closing channel ")
-          return
-        }
+      case val,_:= <- newchann: 
+        // if !ok {
+        //   fmt.Println("Something is wrong ...closing channel ")
+        //   return
+        // }
         fmt.Println(val)
       default:
         fmt.Println("no work is doing by the channel.")
@@ -289,10 +289,31 @@ func main() {
     }
   }(newchann)
 
-  for i:=0;i<5;i++ {
+  for i:=0;i<3;i++ {
     newchann <- fmt.Sprintf("Message in newchann %d", i)
     time.Sleep(time.Second * 1)
   }
+
+  time.Sleep(time.Second*1)
+
+  j := 2 
+  for j > 0 {
+    j = j-1
+    time.Sleep(time.Second * 1)
+  newchann <- fmt.Sprintf("this isa special msg %d ", j)
+  }
+
+  // time.Sleep(time.Second*2 )
+  close(newchann)
+
+  time.Sleep(time.Second * 2)
+
+
+
+
+  
+
+
 
 }
 
