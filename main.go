@@ -269,52 +269,36 @@ func main() {
 //
 //   close(boolchan)
 //
-  newchann := make(chan string) 
+    newchann := make(chan string)
 
+    go func(newchann <-chan string) {
+        for {
+            select {
+            case val, ok := <-newchann:
+                if !ok {
+                    fmt.Println("Channel closed, exiting.")
+                    return
+                }
+                fmt.Println("Received:", val)
+            default:
+                fmt.Println("No new messages. Waiting...")
+                time.Sleep(1 * time.Second)
+            }
+        }
+    }(newchann)
 
-  go func(newchann <-chan string) {
-    
-    for {
-      select {
-      case val,_:= <- newchann: 
-        // if !ok {
-        //   fmt.Println("Something is wrong ...closing channel ")
-        //   return
-        // }
-        fmt.Println(val)
-      default:
-        fmt.Println("no work is doing by the channel.")
-        time.Sleep(1* time.Second)
+    for i := 0; i < 3; i++ {
+        newchann <- fmt.Sprintf("Message %d", i)
+        time.Sleep(time.Second * 1)
     }
+
+    for j := 2; j > 0; j-- {
+        time.Sleep(time.Second * 1)
+        newchann <- fmt.Sprintf("Special message %d", j)
     }
-  }(newchann)
 
-  for i:=0;i<3;i++ {
-    newchann <- fmt.Sprintf("Message in newchann %d", i)
-    time.Sleep(time.Second * 1)
-  }
-
-  time.Sleep(time.Second*1)
-
-  j := 2 
-  for j > 0 {
-    j = j-1
-    time.Sleep(time.Second * 1)
-  newchann <- fmt.Sprintf("this isa special msg %d ", j)
-  }
-
-  // time.Sleep(time.Second*2 )
-  close(newchann)
-
-  time.Sleep(time.Second * 2)
-
-
-
-
-  
-
-
-
+    close(newchann)
+    time.Sleep(time.Second * 2) 
 }
 
 
