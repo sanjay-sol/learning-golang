@@ -299,6 +299,61 @@ func main() {
 
     close(newchann)
     time.Sleep(time.Second * 2) 
+   
+
+    /// testing select with multiple channels
+
+    ch1 := make(chan string)
+    ch2 := make(chan string)
+    
+    go func() {
+      time.Sleep(time.Second)
+      ch1 <- "one"
+    }()
+
+    go func() {
+      time.Sleep(time.Second)
+      ch2 <- "two"
+    }()
+
+    for i := 0; i < 2; i++ {
+      select {
+      case msg1 := <- ch1:
+        fmt.Println("message 1", msg1)
+      case msg2 := <- ch2:
+        fmt.Println("message 2", msg2)
+      }
+    }
+
+    // select with default case
+
+    ch3 := make(chan string)
+    ch4 := make(chan string)
+
+    go func() {
+      time.Sleep(time.Second)
+      ch3 <- "one"
+    }()
+
+    go func() {
+      time.Sleep(time.Second)
+      ch4 <- "two"
+    }()
+
+    for i := 0; i < 2; i++ {
+      select {
+      case msg1 := <- ch3:
+        fmt.Println("message 1", msg1)
+      case msg2 := <- ch4:
+        fmt.Println("message 2", msg2)
+      default:
+        fmt.Println("No message received")
+      }
+    }
+
+
+
+
 }
 
 
