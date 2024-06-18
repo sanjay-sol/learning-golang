@@ -3,10 +3,12 @@ package main
 import (
   "fmt"
   "time"
+  "sync"
 )
 
 
-func work(timer time.Duration, s string, ch chan string) {
+func work(timer time.Duration, s string, ch chan string, wg *sync.WaitGroup) {
+  defer wg.Done()
   fmt.Println("Started Work.......")
   time.Sleep(timer)
   fmt.Println("Done work !!!1")
@@ -15,23 +17,20 @@ func work(timer time.Duration, s string, ch chan string) {
 
 func main() {
   start := time.Now()
-  // wg := sync.WaitGroup{}
+  var wg sync.WaitGroup
   ch := make(chan string)
-  // wg.Add(2)
+  wg.Add(2)
 
-  go work(2 * time.Second, "work--1", ch)
-  go work(4 * time.Second, "work--2", ch)
+  go work(2 * time.Second, "work--1", ch, &wg) 
+  go work(4 * time.Second, "work--2", ch, &wg)
 
-  // wg.Wait()
-  i := 0
+  go func() {
+    wg.Wait()
+    close(ch)
+  }()
+
   for val := range ch{
-    fmt.Printf("Work -- 1 %v", val)
-    if i == len(ch) {
-      time.Sleep(1 * time.Second)
-      close(ch)
-    }else {
-      i++
-    }
+    fmt.Printf("val from channel %v", val)
   }
 
   fmt.Printf("Total time is ------ %v ",time.Since(start))
