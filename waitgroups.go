@@ -23,10 +23,17 @@ func main() {
   go work(4 * time.Second, "work--2", ch)
 
   // wg.Wait()
-  val1 := <-ch
-  fmt.Printf("val1 is ------ %v ",val1)
-  val2 := <-ch
-  fmt.Printf("val2 is ------ %v ", val2)
+  i := 0
+  for val := range ch{
+    fmt.Printf("Work -- 1 %v", val)
+    if i == len(ch) {
+      time.Sleep(1 * time.Second)
+      close(ch)
+    }else {
+      i++
+    }
+  }
+
   fmt.Printf("Total time is ------ %v ",time.Since(start))
 
 }
