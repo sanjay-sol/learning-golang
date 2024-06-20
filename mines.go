@@ -29,6 +29,10 @@ func calculate(val int) {
 	}
 }
 
+func printmatrix() {
+
+}
+
 func main() {
 	reader := bufio.NewReader(os.Stdin)
 	var num1 int
@@ -47,15 +51,15 @@ func main() {
 	}
 
 	calculate(num1)
-
 	for i := 0; i < 5; i++ {
 		for j := 0; j < 5; j++ {
+			value := 5*i + j + 1 
 			if matrix[i][j] == 1 {
-        formated := fmt.Sprintf("X(%d) ",i*j +i+ j+1)
-				fmt.Print(formated," ")
+				formatted := fmt.Sprintf(" -(%2d) ", value)
+				fmt.Print(formatted)
 			} else {
-        formated := fmt.Sprintf("O(%d) ",i*j + i + j +1)
-				fmt.Print(formated," ")
+				formatted := fmt.Sprintf(" -(%2d) ", value)
+				fmt.Print(formatted)
 			}
 		}
 		fmt.Println()
