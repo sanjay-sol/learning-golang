@@ -12,7 +12,7 @@ func work(timer time.Duration, s string, ch chan string, wg *sync.WaitGroup) {
   fmt.Println("Started Work.......")
   time.Sleep(timer)
   fmt.Println("Done work !!!1")
-  ch<- s
+  ch <- s + "Hello"
 }
 
 func main() {
