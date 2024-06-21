@@ -11,6 +11,7 @@ import (
 )
 
 var matrix [5][5]int32
+var revealed [5][5]bool 
 
 func calran() int {
 	return rand.Intn(5)
@@ -51,17 +52,32 @@ func main() {
 	}
 
 	calculate(num1)
+ //  looptimes := num1 
+ //  for looptimes > 0 {
+	// fmt.Print("Enter the number of mines (1 - 24): ")
+	// 	input, _ := reader.ReadString('\n')
+	// 	input = strings.TrimSpace(input)
+	//
+	// 	var err error
+	// 	num1, err = strconv.Atoi(input)
+	// 	if err == nil && num1 > 0 && num1 <= 24 {
+	// 		break
+	// 	}
+	// 	fmt.Println("Invalid input. Please enter a number between 1 and 24.")
+	//
+ //  }
 	for i := 0; i < 5; i++ {
 		for j := 0; j < 5; j++ {
 			value := 5*i + j + 1 
 			if matrix[i][j] == 1 {
-				formatted := fmt.Sprintf(" -(%2d) ", value)
+				formatted := fmt.Sprintf(" X(%2d) ", value)
 				fmt.Print(formatted)
 			} else {
-				formatted := fmt.Sprintf(" -(%2d) ", value)
+				formatted := fmt.Sprintf(" .(%2d) ", value)
 				fmt.Print(formatted)
 			}
 		}
+		fmt.Println()
 		fmt.Println()
 	}
 }
