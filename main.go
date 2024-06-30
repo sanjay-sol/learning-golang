@@ -114,6 +114,8 @@ func donechan(done <-chan string) {
   }
   }
 
+  
+
 }
 
 func main() {
@@ -287,6 +289,7 @@ func main() {
         }
     }(newchann)
 
+
     for i := 0; i < 3; i++ {
         newchann <- fmt.Sprintf("Message %d", i)
         time.Sleep(time.Second * 1)
@@ -352,6 +355,8 @@ func main() {
     }
 
   // wait groups 
+
+
 
 
 
