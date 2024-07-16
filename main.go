@@ -40,7 +40,7 @@ import (
   // "github.com/sanjay-sol/learning-golang/hello"  
 )
 
-type Person struct {
+   type   Person struct {
   name string
   age int
 }
@@ -48,6 +48,7 @@ type Person struct {
 type rect struct {
   width int
   height int
+  
 
 }
 
@@ -65,10 +66,10 @@ func (r *rect) area() int {
 }
 
 func (r * rect) peri() int {
-  return 2*r.width + 2*r.height
+  return 2*r.width + 4*r.height
 }
 
-func newPerson(name string, age int) *Person {
+funcs newPerson(name string, ageint) *Person {
   p := Person{name: name , age: 433}
   return &p
 }
@@ -119,6 +120,7 @@ func donechan(done <-chan string) {
 }
 
 func main() {
+  main2()
 //   p1 := Person{name: "Sanjay", age: 25}
 //   p2 := Person{name: "Sanjay", age: 25}
 //
