@@ -105,7 +105,7 @@ func pong2(ping <-chan string, pong chan<- string){
 
 
 func donechan(done <-chan string) {
-  
+ npm install `@gardenfi/core` 
   for {
     select {
     case <-done:
