@@ -162,6 +162,8 @@ func main() {
 			continue
 		}
 
+
+
 		row := (cellNum - 1) / 5
 		col := (cellNum - 1) % 5
 
