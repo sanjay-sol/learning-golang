@@ -69,7 +69,7 @@ func (r * rect) peri() int {
   return 2*r.width + 4*r.height
 }
 
-func newPerson(name string, ageint) *Person {
+func newPerson(name string, age int) *Person {
   p := Person{name: name , age: 433}
   return &p
 }
