@@ -17,4 +17,10 @@ func main()  {
   fmt.Println(**num3);
   update(num3);
   fmt.Printf(num);
+
+}
+
+type person struct{
+  name string
+  age int
 }
