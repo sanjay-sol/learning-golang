@@ -8,6 +8,16 @@ func update(name **string ) {
 
 }
 
+type person struct{
+  name string
+  age int
+}
+
+func change(p *person) {
+  p.name = "asdf"
+  p.age = 99
+}
+
 func main()  {
   num := "sanju"
   num2 := &num;
@@ -17,10 +27,11 @@ func main()  {
   fmt.Println(**num3);
   update(num3);
   fmt.Printf(num);
-
-}
-
-type person struct{
-  name string
-  age int
+  person := person{
+    name: "sanjay",
+    age: 23,
+  }
+  change(&person);
+  fmt.Println(person) 
+  
 }
